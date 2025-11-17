@@ -1,4 +1,4 @@
-package com.globalsolution.service;
+package globalsolution.javags.service;
 
 import globalsolution.javags.dto.TrilhaDTO;
 import globalsolution.javags.entity.Trilha;
