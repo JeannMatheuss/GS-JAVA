@@ -10,37 +10,37 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/trilhas")  // Prefixo /api para evitar conflitos
+@RequestMapping("/api/trilhas")
 public class TrilhaController {
 
     @Autowired
     private TrilhaService trilhaService;
 
-    @GetMapping  // GET /api/trilhas
+    @GetMapping
     public ResponseEntity<List<TrilhaDTO>> listarTodos() {
         List<TrilhaDTO> trilhas = trilhaService.listarTodos();
         return ResponseEntity.ok(trilhas);
     }
 
-    @GetMapping("/{id}")  // GET /api/trilhas/{id}
+    @GetMapping("/{id}")
     public ResponseEntity<TrilhaDTO> buscarPorId(@PathVariable Long id) {
         TrilhaDTO trilha = trilhaService.buscarPorId(id);
         return ResponseEntity.ok(trilha);
     }
 
-    @PostMapping  // POST /api/trilhas
+    @PostMapping
     public ResponseEntity<TrilhaDTO> criar(@Valid @RequestBody TrilhaDTO dto) {
         TrilhaDTO trilha = trilhaService.criar(dto);
         return ResponseEntity.status(201).body(trilha);
     }
 
-    @PutMapping("/{id}")  // PUT /api/trilhas/{id}
+    @PutMapping("/{id}")
     public ResponseEntity<TrilhaDTO> atualizar(@PathVariable Long id, @Valid @RequestBody TrilhaDTO dto) {
         TrilhaDTO trilha = trilhaService.atualizar(id, dto);
         return ResponseEntity.ok(trilha);
     }
 
-    @DeleteMapping("/{id}")  // DELETE /api/trilhas/{id}
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
         trilhaService.deletar(id);
         return ResponseEntity.noContent().build();
