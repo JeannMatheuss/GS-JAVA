@@ -1,6 +1,7 @@
 package globalsolution.javags.controller;
 
 import globalsolution.javags.dto.UsuarioDTO;
+import globalsolution.javags.exception.UsuarioNaoEncontradoException;
 import globalsolution.javags.service.UsuarioService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +59,7 @@ public class UsuarioControllerTest {
 
     @Test
     public void testBuscarPorIdNaoEncontrado() throws Exception {
-        when(usuarioService.buscarPorId(1L)).thenThrow(new RuntimeException("Usuário com ID 1 não encontrado"));
+        when(usuarioService.buscarPorId(1L)).thenThrow(new UsuarioNaoEncontradoException("Usuário com ID 1 não encontrado"));
 
         mockMvc.perform(get("/api/usuarios/1"))
                 .andExpect(status().isNotFound())
@@ -107,7 +108,7 @@ public class UsuarioControllerTest {
 
     @Test
     public void testAtualizarNaoEncontrado() throws Exception {
-        when(usuarioService.atualizar(eq(1L), any(UsuarioDTO.class))).thenThrow(new RuntimeException("Usuário com ID 1 não encontrado"));
+        when(usuarioService.atualizar(eq(1L), any(UsuarioDTO.class))).thenThrow(new UsuarioNaoEncontradoException("Usuário com ID 1 não encontrado"));
 
         mockMvc.perform(put("/api/usuarios/1")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -126,7 +127,7 @@ public class UsuarioControllerTest {
 
     @Test
     public void testDeletarNaoEncontrado() throws Exception {
-        doThrow(new RuntimeException("Usuário com ID 1 não encontrado")).when(usuarioService).deletar(1L);
+        doThrow(new UsuarioNaoEncontradoException("Usuário com ID 1 não encontrado")).when(usuarioService).deletar(1L);
 
         mockMvc.perform(delete("/api/usuarios/1"))
                 .andExpect(status().isNotFound())
