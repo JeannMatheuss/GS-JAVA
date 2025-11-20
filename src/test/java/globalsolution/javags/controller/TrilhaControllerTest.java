@@ -1,6 +1,7 @@
 package globalsolution.javags.controller;
 
 import globalsolution.javags.dto.TrilhaDTO;
+import globalsolution.javags.exception.TrilhaNaoEncontradaException;
 import globalsolution.javags.service.TrilhaService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +59,7 @@ public class TrilhaControllerTest {
 
     @Test
     public void testBuscarPorIdNaoEncontrado() throws Exception {
-        when(trilhaService.buscarPorId(1L)).thenThrow(new RuntimeException("Trilha com ID 1 não encontrada"));
+        when(trilhaService.buscarPorId(1L)).thenThrow(new TrilhaNaoEncontradaException("Trilha com ID 1 não encontrada"));
 
         mockMvc.perform(get("/api/trilhas/1"))
                 .andExpect(status().isNotFound())
@@ -110,7 +111,7 @@ public class TrilhaControllerTest {
 
     @Test
     public void testAtualizarNaoEncontrado() throws Exception {
-        when(trilhaService.atualizar(eq(1L), any(TrilhaDTO.class))).thenThrow(new RuntimeException("Trilha com ID 1 não encontrada"));
+        when(trilhaService.atualizar(eq(1L), any(TrilhaDTO.class))).thenThrow(new TrilhaNaoEncontradaException("Trilha com ID 1 não encontrada"));
 
         mockMvc.perform(put("/api/trilhas/1")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -131,7 +132,7 @@ public class TrilhaControllerTest {
 
     @Test
     public void testDeletarNaoEncontrado() throws Exception {
-        doThrow(new RuntimeException("Trilha com ID 1 não encontrada")).when(trilhaService).deletar(1L);
+        doThrow(new TrilhaNaoEncontradaException("Trilha com ID 1 não encontrada")).when(trilhaService).deletar(1L);
 
         mockMvc.perform(delete("/api/trilhas/1"))
                 .andExpect(status().isNotFound())
