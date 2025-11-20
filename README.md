@@ -158,11 +158,11 @@ src/
 
 ## 🤝 Como Contribuir
 
-### 1. Fork o repositório.
-### 2. Crie uma branch para sua feature: git checkout -b feature/nova-funcionalidade.
-### 3. Commit suas mudanças: git commit -m "Adiciona nova funcionalidade".
-### 4. Push e abra um Pull Request.
-### 5. Siga boas práticas: Adicione testes para novas funcionalidades e documente mudanças no README.
+- Fork o repositório.
+- Crie uma branch para sua feature: git checkout -b feature/nova-funcionalidade.
+- Commit suas mudanças: git commit -m "Adiciona nova funcionalidade".
+- Push e abra um Pull Request.
+- Siga boas práticas: Adicione testes para novas funcionalidades e documente mudanças no README.
 
 ---
 
