@@ -14,7 +14,7 @@ import java.util.List;
 public class UsuarioController {
 
     @Autowired
-    private UsuarioService usuarioService;
+    UsuarioService usuarioService;
 
     @GetMapping
     public ResponseEntity<List<UsuarioDTO>> listarTodos() {

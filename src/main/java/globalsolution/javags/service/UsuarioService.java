@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class UsuarioService {
 
     @Autowired
-    private UsuarioRepository repository;
+    UsuarioRepository repository;
 
     public List<UsuarioDTO> listarTodos() {
         return repository.findAll().stream().map(this::toDTO).collect(Collectors.toList());

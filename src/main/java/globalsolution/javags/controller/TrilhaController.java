@@ -14,7 +14,7 @@ import java.util.List;
 public class TrilhaController {
 
     @Autowired
-    private TrilhaService trilhaService;
+    TrilhaService trilhaService;
 
     @GetMapping
     public ResponseEntity<List<TrilhaDTO>> listarTodos() {

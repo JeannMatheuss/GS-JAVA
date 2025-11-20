@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class TrilhaService {
 
     @Autowired
-    private TrilhaRepository repository;
+    TrilhaRepository repository;
 
     public List<TrilhaDTO> listarTodos() {
         return repository.findAll().stream().map(this::toDTO).collect(Collectors.toList());
